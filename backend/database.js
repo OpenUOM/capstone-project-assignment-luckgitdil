@@ -40,7 +40,7 @@ const readTeacherInfo = async (id) => {
     const sql = `SELECT * FROM teacher WHERE id = ?`
     return new Promise((resolve, reject) => {
         knex_db
-            .raw(sql, [id])
+            .raw(sql,[id])
             .then((data) => {
                 resolve(data);
             })
@@ -79,7 +79,7 @@ const updateTeacher = async (name, age, id) => {
 }
 
 const deleteTeacher = async (id) => {
-    const sql = `DELETE * FROM teacher WHERE id=?`
+    const sql = `DELETE * FROM teacher WHERE id= ?`
     return new Promise((resolve, reject) => {
         knex_db
             .raw(sql,[id])
