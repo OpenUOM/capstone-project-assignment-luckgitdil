@@ -41,7 +41,6 @@ export class TeacherTableComponent implements OnInit {
       console.log('ERROR - ', error)
     })
   }
-
   getTeacherData() {
     this.selected = 'Teachers';
     this.service.getTeacherData().subscribe((response) => {
@@ -59,7 +58,6 @@ export class TeacherTableComponent implements OnInit {
       console.log('ERROR - ', error)
     })
   }
-
   search(value) {
     let foundItems = [];
     if (value.length <= 0) {

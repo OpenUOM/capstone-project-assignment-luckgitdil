@@ -34,7 +34,15 @@ export class StudentTableComponent implements OnInit {
     this.router.navigate(['editStudent'], navigationExtras )
   }
 
+  initializeDB(){
+    this.service.initializeDB().subscribe((response) => {
+      console.log('DB is Initialized')
+    }, (error) => {
+      console.log('ERROR - ', error)
+    })
+  }
   getStudentData(){
+    this.selected = 'Students';
     this.service.getStudentData().subscribe((response)=>{
       this.studentData = Object.keys(response).map((key) => [response[key]]);
     },(error)=>{
@@ -42,15 +50,14 @@ export class StudentTableComponent implements OnInit {
     })
   }
 
-  deleteStudent(itemid){
-    const student = {
-      id: itemid
-    }
-    this.service.deleteStudent(student).subscribe((response)=>{
-      this.getStudentData()
+  getTeacherData() {
+    this.selected = 'Teachers';
+    this.service.getTeacherData().subscribe((response) => {
+      this.studentData = response;
+    }, (error) => {
+      console.log('ERROR - ', error)
     })
   }
-
   search(value) {
     let foundItems = [];
     if (value.length <= 0) {
@@ -63,5 +70,14 @@ export class StudentTableComponent implements OnInit {
       });
       this.studentData = foundItems;
     }
+  }
+
+  deleteStudent(itemid){
+    const test = {
+      id: itemid
+    }
+    this.service.deleteStudent(test).subscribe((response)=>{
+      this.getStudentData()
+    })
   }
 }
