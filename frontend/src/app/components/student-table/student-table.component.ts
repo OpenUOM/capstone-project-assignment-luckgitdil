@@ -50,14 +50,6 @@ export class StudentTableComponent implements OnInit {
     })
   }
 
-  getTeacherData() {
-    this.selected = 'Teachers';
-    this.service.getTeacherData().subscribe((response) => {
-      this.studentData = response;
-    }, (error) => {
-      console.log('ERROR - ', error)
-    })
-  }
   search(value) {
     let foundItems = [];
     if (value.length <= 0) {
